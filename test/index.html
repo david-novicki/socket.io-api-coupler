@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<h1>Test</h1>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+	<script>
+		const socket = io('http://localhost:9999');
+		socket.emit('room1', {
+			data: 'hi there',
+			id: '1'
+		});
+		socket.on('room1', (msg) => {
+			console.log('message received', msg)
+		});
+	</script>
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "socket.io-api-coupler",
+  "version": "1.0.0",
+  "description": "Socket.io to Restful API coupler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RESTful",
+    "express",
+    "sockets",
+    "api"
+  ],
+  "author": "David Novicki <supercycle91@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "socket.io": "^2.1.1"
+  }
+}
