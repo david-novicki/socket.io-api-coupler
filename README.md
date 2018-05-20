@@ -15,7 +15,7 @@ const instance = new SocketInterface({
       name: "message", // socket.io event name [required]
       url: "https://jsonplaceholder.typicode.com/posts/:id",// forwarding API url [required]
       method: "PUT", // Method type [required]
-	  params: ["id"] // any params to be replaced in the url from data in socket payload
+      params: ["id"] // any params to be replaced in the url from data in socket payload
     }
   ]
 });
