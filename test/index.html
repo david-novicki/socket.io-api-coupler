@@ -3,16 +3,41 @@
 
 <body>
 	<h1>Test</h1>
+	<ul id="messageList"></ul>
+	<input id="messageInput" type="text" />
+	<button type="button" onclick="send()">Send</button>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 	<script>
 		const socket = io('http://localhost:9999');
-		socket.emit('room1', {
-			data: 'hi there',
-			id: '1'
+		const $messageInput = document.getElementById('messageInput');
+		const $messageList = document.getElementById('messageList');
+
+		socket.on('room1', ({
+			data
+		}) => {
+			console.log('received', data)
+			addMessage(data);
 		});
-		socket.on('room1', (msg) => {
-			console.log('message received', msg)
+		socket.on('connections', (msg) => {
+			console.log('connection received', msg)
 		});
+		socket.on('disconnections', (msg) => {
+			console.log('disconnection received', msg)
+		});
+		const send = () => {
+			const value = $messageInput.value;
+			addMessage(value);
+			$messageInput.value = '';
+			socket.emit('room1', {
+				id: '1',
+				data: value
+			});
+		};
+		const addMessage = (msg) => {
+			let newLi = document.createElement('li');
+			newLi.innerText = msg;
+			$messageList.appendChild(newLi);
+		}
 	</script>
 	</script>
 </body>

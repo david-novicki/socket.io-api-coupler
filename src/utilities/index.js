@@ -1,3 +1,28 @@
+const buildUrl = (url, params, data) => {
+	if (!params) return url;
+	return params.reduce((acc, currentVal) =>
+		acc.replace(`:${currentVal}`, data[currentVal]), url);
+};
+const process = (io, socket, item) => async (data) => {
+	let response = await processFetch(item, data);
+	if (item.emit)
+		emit(io, socket, item, response);
+};
+const emit = (io, socket, item, data) => {
+	switch (item.emit) {
+		case 'all':
+			io.emit(item.name, data);
+			break;
+		case 'allButSender':
+			socket.broadcast.emit(item.name, data);
+			break;
+		case 'sender':
+			socket.emit(item.name, data);
+			break;
+		default:
+			break;
+	}
+}
 const processFetch = async ({
 	url,
 	method,
@@ -8,7 +33,6 @@ const processFetch = async ({
 		let requestObj = {};
 		let builtUrl = url;
 		if (params) builtUrl = buildUrl(url, params, data);
-		console.log(builtUrl)
 		if (data && method !== 'GET') requestObj.body = JSON.stringify(data);
 		response = await fetch(builtUrl, {
 			...requestObj,
@@ -34,13 +58,9 @@ const processFetch = async ({
 			error: error.message
 		};
 	}
-};
-const buildUrl = (url, params, data) => params.reduce((acc, currentVal) =>
-	acc.replace(`:${currentVal}`, data[currentVal]), url);
+}
 
 module.exports = {
-	forwardCallback: (socket, item) => async (data) => {
-		console.log('message received', data);
-		socket.emit(item.name, await processFetch(item, data));
-	}
+	process,
+	processFetch
 };
