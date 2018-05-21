@@ -2,7 +2,7 @@
 
 ** UNDER CONSTRUCTION **
 
-Ever has a need to move your exisiting API's to Push/Pull relationships? With Socket.io-to-API-coupler, you can build that serverless chat application you always wanted. The main objective of this library is standardize a way to proxy Socket.io frames to your backend APIs.
+Ever had a need to move your exisiting API's to Push/Pull relationships? With Socket.io-to-API-coupler, you can build that serverless chat application you always wanted. The main objective of this library is standardize a way to proxy Socket.io frames to your backend APIs.
 
 ## Example
 
