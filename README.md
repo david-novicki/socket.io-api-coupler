@@ -16,7 +16,7 @@ const instance = new SocketInterface({
       url: "https://jsonplaceholder.typicode.com/posts/:id",// forwarding API url [required]
       method: "PUT", // Method type [required]
       params: ["id"], // any params to be replaced in the url from data in socket payload
-      emit: "all" // options: all, allButSender, defines 'who' to emit the response of the api
+      emit: "all" // options: all, allButSender, or sender. This defines 'who' to emit the response of the api
     }
   ]
 });
