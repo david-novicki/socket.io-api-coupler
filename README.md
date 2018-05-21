@@ -9,7 +9,7 @@ Ever has a need to move your exisiting API's to Push/Pull relationships? With So
 ```js
 const SocketInterface = require("../index");
 const instance = new SocketInterface({
-  port: 8080 //default 9999
+  port: 8080, //default 9999
   gateways: [
     {
       name: "message", // socket.io event name [required]
